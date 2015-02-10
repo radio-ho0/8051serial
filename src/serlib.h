@@ -6,3 +6,6 @@ char getchar(void);
 int strlen(const char *str);
 int strlcpy(char *dst, const char *src, int siz);
 int strcmp(const char *s1, const char *s2);
+int strncmp(const char *s1, const char *s2, int n);
+
+char * strcpy(char *to, const char *from);

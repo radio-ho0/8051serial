@@ -5,7 +5,7 @@
 #include "serlib.h"
 
 enum serial_cons{
-    CMD_LENG = 16,
+    CMD_LENG = 20,
 
 };
 
@@ -13,6 +13,7 @@ enum serial_cons{
 #define  BAUD 2400
 #define  SER_TH_VAL (256 - (FOSC / 12 / 32) / BAUD)
 
+char tmp_array[CMD_LENG];
 char cmd[CMD_LENG];
 char c;
 char ok;
@@ -78,10 +79,14 @@ void main()
             }else if(!strcmp(cmd, "apple")){
                 newline("I like apple!");
                 LcdShowStr(0, 1,"I like apple!");
-            }
+            }else if(!strncmp(cmd, "echo ", 5)){
+                 cmd[CMD_LENG - 1] = '\0';
+                 strcpy(tmp_array, &cmd[5]);
+                 LcdShowStr(0, 0,tmp_array);
+          }
 
             
-          cmp_result =   strcmp(cmd, "abc");
+          cmp_result =   strncmp(cmd, "abc", 3);
 
           if(cmp_result == 0){
               newline("right");
