@@ -52,6 +52,7 @@ void main()
     LcdShowStr(0, 1, "Go!!wait4login");
 
 
+    putstr("$ ");
     for (;;) {
         c = getchar();
         if( (c != 0x0d) && (index < (CMD_LENG - 1) )){
@@ -65,14 +66,14 @@ void main()
         if(ok){
             ok = 0;
             putstr("\r\n");
-            putchar('>');
+        //    putchar('>');
 
             putstr(cmd);
             if(!strcmp(cmd, "help") ){
                 LcdShowStr( 3, 0, "ho0 serial os");
                 newline("no help ha!");
                 newline("cmds: ls apple abc ! :)");
-                LcdShowStr(0, 1,"cmds: ls apple abc ! :)");
+                LcdShowStr(0, 1,"cmds: ls apple abc echo! :)");
 
             }else if(!strcmp(cmd, "ls")){
                 P3 = ~P3;
@@ -95,6 +96,7 @@ void main()
           }
             index = 0;
             putstr("\r\n");
+            putstr("$ ");
         }
 
 
